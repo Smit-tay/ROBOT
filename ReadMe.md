@@ -1,4 +1,4 @@
-# Steampunk Digital CLock
+# Steampunk Digital Clock
 ----------
 
 ## Purpose
@@ -21,3 +21,4 @@
 	```
 ## NOTE
 - Currently under heavy development.
+- Next : add OpenCV and symbol recognition 

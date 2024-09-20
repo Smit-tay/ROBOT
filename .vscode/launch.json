@@ -1,0 +1,26 @@
+{
+  "configurations": [
+  {
+    "type": "gdb",
+    "request": "attach",
+    "name": "Attach worker-gdbserver",
+    "executable": "./test_uarm",
+    "cwd": "${workspaceRoot}",
+    "target": "extended-remote worker:1234",
+    "remote": false,
+    "stopAtEntry": "main",
+    "autorun": [
+      "file ${workspaceRoot}/build/test_uarm",
+      "set sysroot ./lib",  
+      "set remote exec-file /home/jack/ROBOT/test_uarm",
+      "set environment LD_LIBRARY_PATH ./",
+      "set solib-search-path /home/jack/dev/ROBOT/build/lib::/lib64:/usr/lib:/usr/lib64",
+      "set auto-solib-add on",
+      "set args /dev/swiftpro",
+      "break main",
+      "run",
+      "interrupt"
+    ]
+  }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "build-local",
+        "type": "shell",
+        "command": "cmake",
+        "args": [
+          "--build",
+          "${workspaceFolder}/build"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [
+          "$gcc"
+        ],
+        "detail": "Build C++ project using CMake"
+      },
+      {
+        "label": "deploy-remote",
+        "type": "shell",
+        "command": "scp",
+        "args": [
+          "${workspaceFolder}/build/test_uarm",
+          "${workspaceFolder}/build/lib/libuarm.so",
+          "jack@worker:/home/jack/ROBOT"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "start-remote-debug",
+        "type": "shell",
+        "command": "ssh",
+        "args": [
+          "jack@worker",
+          "gdbserver --multi :1234 "
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "problemMatcher": []
+      },
+      {
+        "type": "cmake",
+        "label": "CMake: clean",
+        "command": "clean",
+        "problemMatcher": [],
+        "detail": "CMake template clean task"
+      },
+      {
+        "type": "cmake",
+        "label": "CMake: configure",
+        "command": "configure",
+        "problemMatcher": [],
+        "detail": "CMake template configure task"
+      }
+    ]
+  }
+  
+ 

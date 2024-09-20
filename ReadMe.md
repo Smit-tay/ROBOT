@@ -19,3 +19,5 @@
     ```
 	./clock /dev/TTYACM0
 	```
+## NOTE
+- Currently under heavy development.

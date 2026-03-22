@@ -130,12 +130,20 @@ void SwiftController::go_pos(const std::string& pos_name){
     SwiftPositions::Position position = positions.retrieve_position(pos_name);
     auto [x, y, z] = position;
     
-    int result = swift.set_position(x, y, z, 10000L, false, true);  // wait is true
-
+    // We have to be careful because the movement to the destination
+    // position is calculated to be as direct as possible.
+    // But, we want to drop down to the position to avoid disturbing tiles
+    // So, this requires 2 commands.
+    int result = swift.set_position(x, y, z+20, 20000L, false, true);  // wait is true
     // Check if the movement was successful
     if (result != 0) {
         std::cerr << "Error moving UArm to home position. Error code: " << result << std::endl;
     }
+    result = swift.set_position(x, y, z, 20000L, false, true);  // wait is true
+    if (result != 0) {
+        std::cerr << "Error moving UArm to home position. Error code: " << result << std::endl;
+    }
+
 }
 
 // Lift the head just a little
